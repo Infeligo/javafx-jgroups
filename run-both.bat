@@ -1,0 +1,2 @@
+start /b java -jar -Djava.net.preferIPv4Stack=true build/libs/javafx-jgroups-0.0.1-SNAPSHOT.jar --instance=Instance-1
+start /b java -jar -Djava.net.preferIPv4Stack=true build/libs/javafx-jgroups-0.0.1-SNAPSHOT.jar --instance=Instance-2

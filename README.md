@@ -1,0 +1,1 @@
+An example of using JavaFX and JGroups to create a robust chat

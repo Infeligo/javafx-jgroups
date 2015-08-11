@@ -1,0 +1,29 @@
+apply plugin: 'java'
+
+group = 'sample'
+version = '0.0.1-SNAPSHOT'
+
+description = """"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+dependencies {
+    compile 'org.jgroups:jgroups:3.6.4.Final'
+
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "sample.Main"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
