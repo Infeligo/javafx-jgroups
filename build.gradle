@@ -1,5 +1,14 @@
 apply plugin: 'java'
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.sf.proguard:proguard-gradle:5.2.1'
+    }
+}
+
 group = 'sample'
 version = '0.0.1-SNAPSHOT'
 
@@ -26,4 +35,11 @@ jar {
     from {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
+}
+
+task proguard(type: proguard.gradle.ProGuardTask) {
+    configuration 'proguard.txt'
+
+    injars 'build/libs/javafx-jgroups-0.0.1-SNAPSHOT.jar'
+    outjars 'build/libs/javafx-jgroups-0.0.1-SNAPSHOT.out.jar'
 }

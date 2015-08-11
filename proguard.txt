@@ -1,0 +1,49 @@
+# Include java runtime classes
+-libraryjars  <java.home>/lib/rt.jar
+-libraryjars  <java.home>/lib/jce.jar
+-libraryjars <java.home>/lib/ext/jfxrt.jar
+
+# Output a source map file
+-printmapping proguard.map
+
+# Keep filenames and line numbers
+-keepattributes SourceFile, LineNumberTable
+
+# Disable certain proguard optimizations which remove stackframes (same as Android defaults)
+-optimizations !method/inlining/*
+
+-keep public class * {
+    public protected *;
+}
+
+-adaptresourcefilecontents **.fxml
+
+-keepclassmembernames class * {
+    java.lang.Class class$(java.lang.String);
+    java.lang.Class class$(java.lang.String, boolean);
+    @javafx.fxml.FXML *;
+}
+
+-keepclasseswithmembers public class sample.Main {
+    public *; public static *;
+}
+
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+
+-dontwarn org.apache.logging.**
